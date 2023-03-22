@@ -12,10 +12,10 @@ import org.junit.runner.RunWith;
                 "json:target/cucumber.json",
                 "junit:target/cucumber.xml"
         },
-        tags = "@login",
+
         features = {"src/test/resources/features"},
-        glue = {"step_definitions"}
-        , dryRun = false
+        glue = {"step_definitions"},
+        dryRun = false
 )
 public class CukesRunner {
 
