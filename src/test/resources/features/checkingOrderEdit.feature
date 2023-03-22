@@ -1,6 +1,5 @@
 Feature: Order edit tests
 @Postive
-
   Scenario: Checking if Paul Brown still there
     Given : The user navigates to View all Orders page by entering valid "Tester" and "test"
     When : The user clicks edit button on first row of table

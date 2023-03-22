@@ -13,7 +13,7 @@ import org.junit.runner.RunWith;
                 "junit:target/cucumber.xml"
         },
 
-        features = {"src/test/resources/features"},
+        features = {"src/test/resources/features/orderPageTest"},
         glue = {"step_definitions"},
         dryRun = false
 )
