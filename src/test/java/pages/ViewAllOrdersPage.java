@@ -19,7 +19,7 @@ public class ViewAllOrdersPage {
     //Locating edit icon for first row order
     @FindBy (xpath = "//input[@src='App_Themes/Default/images/button_edit.gif'][1]")
     public WebElement firstRowEditOrder;
-    //Locating Paul Brown
+    //Locating Paul Brownn
     @FindBy (xpath = " //table/tbody/tr[2]/td[2]")
     public WebElement paulBrown;
     //Locating update button
