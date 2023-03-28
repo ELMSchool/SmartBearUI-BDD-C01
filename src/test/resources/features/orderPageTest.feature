@@ -58,7 +58,7 @@ Feature: Order Page Test
       | "MyMoney"            | "-10"    | "Baku"       |
 
 
-  @dataTable
+
   Scenario: Filling informations and placing order by using datatable
     Given User navigates to the Order Page by valid "Tester" and "test"
     Then User clicks on Orders button from dashboard
@@ -68,5 +68,8 @@ Feature: Order Page Test
     Then User enters Address informations from datatable
       |Customer name|Street      |City|State   |Zip  |Card Number |Exp Date|
       |George Bush  |123 Old Baku|Baku|Absheron|30121|123456789   |11/23   |
+
+
+
 
 
