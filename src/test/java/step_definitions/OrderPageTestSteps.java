@@ -9,14 +9,18 @@ import io.cucumber.java.en.When;
 import io.cucumber.datatable.DataTable;
 import org.junit.Assert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import pages.DashboardPage;
 import pages.LoginPage;
 import pages.OrderPage;
+import pages.ViewAllOrdersPage;
 import utils.ConfigReader;
 import utils.Driver;
 
+import javax.xml.crypto.Data;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
@@ -27,18 +31,20 @@ public class OrderPageTestSteps {
     public void userNavigatesToTheOrderPageByValidAnd(String username, String password) {
         Driver.getDriver().manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         Driver.getDriver().get(ConfigReader.getPropertyValue("url"));
-        new LoginPage().loginMethod(username,password);
+        new LoginPage().loginMethod(username, password);
 
 
     }
+
     @Then("User clicks on Orders button from dashboard")
     public void userClicksOnOrdersButtonFromDashboard() {
         new DashboardPage().orderButton.click();
     }
+
     @When("User is lands on Order Page")
     public void userIsLandsOnOrderPage() {
         String expectedUrl = "http://secure.smartbearsoftware.com/samples/testcomplete12/weborders/Process.aspx";
-        Assert.assertEquals("You are not on orders page",Driver.getDriver().getCurrentUrl(),expectedUrl);
+        Assert.assertEquals("You are not on orders page", Driver.getDriver().getCurrentUrl(), expectedUrl);
 
     }
 
@@ -59,10 +65,12 @@ public class OrderPageTestSteps {
     public void userClicksOnCalculateButton() {
         new OrderPage().calculateButton.click();
     }
+
     @And("User enters  inputs name into {string} box")
     public void userEntersInputsNameIntoBox(String name) {
         new OrderPage().custName.sendKeys(name);
     }
+
     @And("User enters inputs adress into {string} box")
     public void userEntersInputsAdressIntoBox(String adress) {
         new OrderPage().street.sendKeys(adress);
@@ -89,16 +97,13 @@ public class OrderPageTestSteps {
 
     @And("User makes choice between payment {string}")
     public void userMakesChoiceBetweenPayment(String card) {
-        if (card.equals("Visa"))
-        {
+        if (card.equals("Visa")) {
             new OrderPage().visaButton.click();
         }
-        if (card.equals("MasterCard"))
-        {
+        if (card.equals("MasterCard")) {
             new OrderPage().masterCard.click();
         }
-        if (card.equals("AmericanExpress"))
-        {
+        if (card.equals("AmericanExpress")) {
             new OrderPage().americanExpress.click();
         }
 
@@ -108,7 +113,6 @@ public class OrderPageTestSteps {
     public void userEntersCardNumber() {
         new OrderPage().cardNumber.sendKeys("8327856767230000");
     }
-
 
 
     @And("User enters expiration date")
@@ -130,8 +134,6 @@ public class OrderPageTestSteps {
     @Then("User enters Address informations from datatable")
     public void userEntersAddressInformationsFromDatatable(DataTable dataTable) {
         List<Map<String, String>> datam = dataTable.asMaps();
-
-        System.out.println(datam);
         new OrderPage().custName.sendKeys(datam.get(0).get("Customer name"));
         new OrderPage().street.sendKeys(datam.get(0).get("Street"));
         new OrderPage().city.sendKeys(datam.get(0).get("City"));
@@ -142,5 +144,34 @@ public class OrderPageTestSteps {
         new OrderPage().cardNumber.sendKeys(datam.get(0).get("Card Number"));
         new OrderPage().expDate.sendKeys(datam.get(0).get("Exp Date"));
         new OrderPage().processButton.click();
+
+
     }
+
+
+    @Given(": The user navigates to View all Orders page")
+    public void theUserNavigatesToViewAllOrdersPage() {
+        new DashboardPage().viewAllOrderButton.click();
+    }
+
+    @And(": User gets list of texts from first order row and  compares actual list with expected list from datatable")
+    public  void userGetsListOfTextsFromFirstOrderRow(DataTable dataTable) {
+        List<String> expectedOrderText = dataTable.asList();
+        List<String> actualOrderTexts= new ArrayList<>();
+
+        for(int i=2;i<=12;i++ ){
+            if(i==3||i==4||i==5||i==10){
+                continue;
+
+
+            }
+            actualOrderTexts.add(new ViewAllOrdersPage().getFirstRowElements(i).getText());
+
+    }
+        Assert.assertEquals(expectedOrderText,actualOrderTexts);
+
+
+    }
+
 }
+
