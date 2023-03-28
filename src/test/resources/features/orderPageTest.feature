@@ -58,4 +58,15 @@ Feature: Order Page Test
       | "MyMoney"            | "-10"    | "Baku"       |
 
 
+  @dataTable
+  Scenario: Filling informations and placing order by using datatable
+    Given User navigates to the Order Page by valid "Tester" and "test"
+    Then User clicks on Orders button from dashboard
+    When User is lands on Order Page
+    And User makes choice "ScreenSaver" from from product menu
+    And user enters "20" to Quantity input box
+    Then User enters Address informations from datatable
+      |Customer name|Street      |City|State   |Zip  |Card Number |Exp Date|
+      |George Bush  |123 Old Baku|Baku|Absheron|30121|123456789   |11/23   |
+
 

@@ -13,9 +13,11 @@ import org.junit.runner.RunWith;
                 "junit:target/cucumber.xml"
         },
 
-        features = {"src/test/resources/features/orderPageTest"},
+        features = {"src/test/resources/features"},
         glue = {"step_definitions"},
-        dryRun = false
+        dryRun = false,
+        tags = "@dataTable"
+
 )
 public class CukesRunner {
 

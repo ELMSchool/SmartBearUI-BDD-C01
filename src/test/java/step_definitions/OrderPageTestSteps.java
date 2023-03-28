@@ -5,6 +5,8 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+
+import io.cucumber.datatable.DataTable;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -15,6 +17,8 @@ import pages.OrderPage;
 import utils.ConfigReader;
 import utils.Driver;
 
+import java.util.List;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 public class OrderPageTestSteps {
@@ -121,5 +125,22 @@ public class OrderPageTestSteps {
     @And("User clicks on reset button")
     public void userClicksOnResetButton() {
         new OrderPage().resetButton.click();
+    }
+
+    @Then("User enters Address informations from datatable")
+    public void userEntersAddressInformationsFromDatatable(DataTable dataTable) {
+        List<Map<String, String>> datam = dataTable.asMaps();
+
+        System.out.println(datam);
+        new OrderPage().custName.sendKeys(datam.get(0).get("Customer name"));
+        new OrderPage().street.sendKeys(datam.get(0).get("Street"));
+        new OrderPage().city.sendKeys(datam.get(0).get("City"));
+        new OrderPage().State.sendKeys(datam.get(0).get("State"));
+        new OrderPage().zip.sendKeys(datam.get(0).get("Zip"));
+
+        new OrderPage().visaButton.click();
+        new OrderPage().cardNumber.sendKeys(datam.get(0).get("Card Number"));
+        new OrderPage().expDate.sendKeys(datam.get(0).get("Exp Date"));
+        new OrderPage().processButton.click();
     }
 }

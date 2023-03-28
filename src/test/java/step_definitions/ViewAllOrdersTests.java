@@ -42,7 +42,6 @@ public class ViewAllOrdersTests {
     @Then(": The user verifies if customer name changed or not")
     public void the_user_verifies_if_customer_name_changed_or_not() {
         String fakeName = "John Doe";
-
         Assert.assertEquals("Test is passing if Paul Brown is not Equal to John Doe",fakeName,viewAllorder.paulBrown.getText());
     }
 
@@ -50,7 +49,6 @@ public class ViewAllOrdersTests {
     @Then(": The user verifies if customer name changed or not,and test should fail")
     public void theUserVerifiesIfCustomerNameChangedOrNotAndTestShouldFail() {
         String fakeName = "John Dumbledor";
-
         Assert.assertEquals("Test is passing if Paul Brown is not Equal to John Doe",fakeName,viewAllorder.paulBrown.getText());
     }
 
