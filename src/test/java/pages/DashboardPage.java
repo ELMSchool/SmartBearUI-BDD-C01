@@ -24,4 +24,7 @@ public class DashboardPage {
 
     @FindBy (linkText = "Order")
     public WebElement order;
+
+    @FindBy(id = "ctl00_logout")
+    public WebElement logout;
 }

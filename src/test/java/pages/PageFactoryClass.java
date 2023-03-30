@@ -1,6 +1,7 @@
 package pages;
 
 import org.openqa.selenium.WebDriver;
+import step_definitions.DashboardPageSteps;
 import step_definitions.LoginSteps;
 
 public class PageFactoryClass {
@@ -23,4 +24,10 @@ public class PageFactoryClass {
          return new LoginSteps();
     }
 
+    public ViewAllOrderPage viewAllOrderPage(){
+        return  new ViewAllOrderPage();
+    }
+    public DashboardPageSteps dashboardPageSteps(){
+        return new DashboardPageSteps();
+    }
 }

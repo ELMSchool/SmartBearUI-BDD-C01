@@ -8,6 +8,7 @@ Feature: Dashboard Test
     Then the page is verified
 
 
+
     Scenario: Verify view all orders
         When User clicks on view all orders
         Then User can see list of all orders

@@ -22,8 +22,8 @@ public class DashboardPageSteps {
 
     @Then( "the page is verified")
     public void thePageIsVerified() {
-        String expectedMessage = "Web Orders";
-        Assert.assertEquals("Web Orders", expectedMessage);
+        String actualMessage = "Web Orders";
+        Assert.assertEquals("Web Orders", actualMessage);
 
     }
 
